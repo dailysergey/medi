@@ -5,24 +5,85 @@
 }
 
 :root {
+    /* Цвета для режима медитации (зеленые) */
     --light-green: #E8F5E9;
     --soft-green: #C8E6C9;
     --medium-green: #A5D6A7;
     --dark-green: #81C784;
     --accent-green: #4CAF50;
+    
+    /* Цвета для режима "Work with me" (розовые, цвет сакуры) */
+    --light-pink: #FCE4EC;
+    --soft-pink: #F8BBD0;
+    --medium-pink: #F48FB1;
+    --dark-pink: #F06292;
+    --accent-pink: #EC407A;
+    
+    /* Цвета для ночного режима (темно-синие) */
+    --light-blue: #E8EAF6;
+    --soft-blue: #C5CAE9;
+    --medium-blue: #7986CB;
+    --dark-blue: #3F51B5;
+    --accent-blue: #303F9F;
+    
+    /* Текущие цвета по умолчанию */
+    --light-color: var(--light-green);
+    --soft-color: var(--soft-green);
+    --medium-color: var(--medium-green);
+    --dark-color: var(--dark-green);
+    --accent-color: var(--accent-green);
+    
+    --text-primary: #2E3D32;
+    --text-secondary: #557B59;
+    --heading-color: #2E7D32;
+}
+
+/* Цветовые схемы для разных режимов */
+.mode-meditation {
+    --light-color: var(--light-green);
+    --soft-color: var(--soft-green);
+    --medium-color: var(--medium-green);
+    --dark-color: var(--dark-green);
+    --accent-color: var(--accent-green);
+    --text-primary: #2E3D32;
+    --text-secondary: #557B59;
+    --heading-color: #2E7D32;
+}
+
+.mode-work {
+    --light-color: var(--light-pink);
+    --soft-color: var(--soft-pink);
+    --medium-color: var(--medium-pink);
+    --dark-color: var(--dark-pink);
+    --accent-color: var(--accent-pink);
+    --text-primary: #4A2B30;
+    --text-secondary: #7E5058;
+    --heading-color: #AD1457;
+}
+
+.mode-night {
+    --light-color: var(--light-blue);
+    --soft-color: var(--soft-blue);
+    --medium-color: var(--medium-blue);
+    --dark-color: var(--dark-blue);
+    --accent-color: var(--accent-blue);
+    --text-primary: #1A237E;
+    --text-secondary: #3949AB;
+    --heading-color: #283593;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
-    color: #2E3D32;
-    background-color: var(--light-green);
+    color: var(--text-primary);
+    background-color: var(--light-color);
     min-height: 100vh;
     margin: 0;
     perspective: 1px;
     transform-style: preserve-3d;
     overflow-x: hidden;
     overflow-y: auto;
+    transition: background-color 0.5s ease;
 }
 
 .parallax-wrapper {
@@ -31,11 +92,12 @@ body {
     padding-top: 10vh;
     box-sizing: border-box;
     transform-style: preserve-3d;
-    background: linear-gradient(135deg, #81C784 0%, #C8E6C9 100%);
+    background: linear-gradient(135deg, var(--dark-color) 0%, var(--soft-color) 100%);
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: background 0.5s ease;
 }
 
 .parallax-overlay {
@@ -44,14 +106,45 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    background: radial-gradient(circle, rgba(200, 230, 201, 0.3) 0%, rgba(165, 214, 167, 0.7) 100%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
     z-index: 0;
+    transition: background 0.5s ease;
 }
 
 .header-content {
     margin-bottom: 2rem;
     position: relative;
     z-index: 2;
+}
+
+.mode-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.mode-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.mode-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.mode-btn.active {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--accent-color);
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .parallax-media {
@@ -68,6 +161,7 @@ body {
     backdrop-filter: blur(10px);
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 .parallax-player, .parallax-timer {
@@ -76,6 +170,7 @@ body {
     border-radius: 10px;
     padding: 1.5rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 .content {
@@ -83,6 +178,7 @@ body {
     position: relative;
     padding: 40px 0;
     z-index: 1;
+    transition: background 0.5s ease;
 }
 
 .container {
@@ -93,6 +189,7 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 header {
@@ -103,14 +200,16 @@ header {
 h1 {
     font-size: 2.5rem;
     font-weight: 600;
-    color: var(--accent-green);
+    color: var(--accent-color);
     margin-bottom: 0.5rem;
+    transition: color 0.5s ease;
 }
 
 .subtitle {
     font-size: 1.1rem;
-    color: #557B59;
+    color: var(--text-secondary);
     font-weight: 300;
+    transition: color 0.5s ease;
 }
 
 main {
@@ -142,32 +241,35 @@ main {
 }
 
 button {
-    background-color: var(--medium-green);
+    background-color: var(--medium-color);
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
-    background-color: var(--accent-green);
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
 }
 
 .timer-container {
-    background-color: var(--light-green);
+    background-color: var(--light-color);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     text-align: center;
+    transition: background-color 0.5s ease;
 }
 
 h2 {
     font-size: 1.5rem;
-    color: #2E7D32;
+    color: var(--heading-color);
     margin-bottom: 1.5rem;
+    transition: color 0.5s ease;
 }
 
 .timer-settings {
@@ -179,20 +281,22 @@ h2 {
 }
 
 .timer-btn {
-    background-color: var(--soft-green);
-    color: #2E3D32;
+    background-color: var(--soft-color);
+    color: var(--text-primary);
     padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
 }
 
 .timer-btn:hover {
-    background-color: var(--medium-green);
+    background-color: var(--medium-color);
 }
 
 #timer-display {
     font-size: 3rem;
     font-weight: 600;
-    color: #2E7D32;
+    color: var(--heading-color);
     margin: 1.5rem 0;
+    transition: color 0.5s ease;
 }
 
 #start-timer, #stop-timer {
@@ -203,24 +307,27 @@ h2 {
     text-align: center;
     margin: 3rem 0;
     padding: 1.5rem;
-    border-left: 4px solid var(--accent-green);
-    background-color: var(--light-green);
+    border-left: 4px solid var(--accent-color);
+    background-color: var(--light-color);
     border-radius: 0 8px 8px 0;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
 #quote {
     font-style: italic;
-    color: #2E3D32;
+    color: var(--text-primary);
     font-size: 1.1rem;
+    transition: color 0.5s ease;
 }
 
 footer {
     text-align: center;
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--soft-green);
-    color: #557B59;
+    border-top: 1px solid var(--soft-color);
+    color: var(--text-secondary);
     font-size: 0.9rem;
+    transition: color 0.5s ease, border-color 0.5s ease;
 }
 
 .floating-leaf {
@@ -234,6 +341,19 @@ footer {
     pointer-events: none;
     z-index: 10;
     animation: float 15s infinite linear;
+}
+
+/* Анимация для плавающих элементов будет меняться в зависимости от режима */
+.mode-meditation .floating-leaf {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2381C784"><path d="M12 22s8-4 8-12.5C20 4 16 2 12 2S4 4 4 9.5C4 18 12 22 12 22z"/></svg>');
+}
+
+.mode-work .floating-leaf {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23F48FB1"><path d="M12 22s8-4 8-12.5C20 4 16 2 12 2S4 4 4 9.5C4 18 12 22 12 22z"/></svg>');
+}
+
+.mode-night .floating-leaf {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%237986CB"><path d="M12 10.8l3 1.8-3 1.8-3-1.8 3-1.8M12 6l-7.5 4.5 7.5 4.5 7.5-4.5L12 6z"/></svg>');
 }
 
 @keyframes float {
@@ -259,12 +379,12 @@ footer {
 }
 
 .benefit-card {
-    background-color: var(--light-green);
+    background-color: var(--light-color);
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s;
+    transition: transform 0.3s, background-color 0.5s ease;
 }
 
 .benefit-card:hover {
@@ -277,8 +397,9 @@ footer {
 }
 
 .benefit-card h3 {
-    color: #2E7D32;
+    color: var(--heading-color);
     margin-bottom: 1rem;
+    transition: color 0.5s ease;
 }
 
 @media (min-width: 768px) {
@@ -314,5 +435,15 @@ footer {
     
     .content {
         margin-top: 0;
+    }
+    
+    .mode-switcher {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .mode-btn {
+        width: 80%;
     }
 } 

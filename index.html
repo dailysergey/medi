@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="mode-meditation">
     <!-- Parallax Header Section -->
     <div class="parallax-wrapper">
         <div class="parallax-overlay"></div>
@@ -18,6 +18,13 @@
             <p style="font-size: 1.5rem; max-width: 600px; margin: 0 auto; text-shadow: 0 2px 5px rgba(0,0,0,0.3);">
                 Время для себя и своего спокойствия
             </p>
+            
+            <!-- Добавляем кнопки режимов -->
+            <div class="mode-switcher">
+                <button id="mode-meditation" class="mode-btn active">Медитация</button>
+                <button id="mode-work" class="mode-btn">Work with me</button>
+                <button id="mode-night" class="mode-btn">Night Time</button>
+            </div>
         </div>
         
         <!-- Медиа-элементы в параллакс секции -->
