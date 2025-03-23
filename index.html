@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Медитация | Lofi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Медитация с Lofi</h1>
+            <p class="subtitle">Расслабьтесь и сконцентрируйтесь с помощью успокаивающей музыки</p>
+        </header>
+
+        <main>
+            <div class="player-container">
+                <div id="player"></div>
+                <div class="controls">
+                    <button id="play-btn">▶️ Играть</button>
+                    <button id="pause-btn">⏸️ Пауза</button>
+                    <button id="next-btn">⏭️ Следующее</button>
+                </div>
+            </div>
+
+            <div class="timer-container">
+                <h2>Таймер медитации</h2>
+                <div class="timer-settings">
+                    <button class="timer-btn" data-time="5">5 мин</button>
+                    <button class="timer-btn" data-time="10">10 мин</button>
+                    <button class="timer-btn" data-time="15">15 мин</button>
+                    <button class="timer-btn" data-time="30">30 мин</button>
+                </div>
+                <div id="timer-display">00:00</div>
+                <button id="start-timer">Начать таймер</button>
+                <button id="stop-timer">Остановить</button>
+            </div>
+        </main>
+
+        <div class="quote-container">
+            <p id="quote">"Дыхание — это нить, которая связывает нас с настоящим моментом."</p>
+        </div>
+
+        <footer>
+            <p>© 2023 Медитация с Lofi. Создано для внутреннего спокойствия.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

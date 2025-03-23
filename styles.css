@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    font-weight: 300;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.player-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#player {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2563eb;
+}
+
+.timer-container {
+    background-color: #f8fafc;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+}
+
+.timer-settings {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.timer-btn {
+    background-color: #e2e8f0;
+    color: #334155;
+    padding: 0.5rem 1rem;
+}
+
+.timer-btn:hover {
+    background-color: #cbd5e1;
+}
+
+#timer-display {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 1.5rem 0;
+}
+
+#start-timer, #stop-timer {
+    margin: 0 0.5rem;
+}
+
+.quote-container {
+    text-align: center;
+    margin: 3rem 0;
+    padding: 1.5rem;
+    border-left: 4px solid #3b82f6;
+    background-color: #f8fafc;
+    border-radius: 0 8px 8px 0;
+}
+
+#quote {
+    font-style: italic;
+    color: #334155;
+    font-size: 1.1rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+    main {
+        flex-direction: row;
+        align-items: stretch;
+    }
+    
+    .player-container, .timer-container {
+        flex: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+} 
