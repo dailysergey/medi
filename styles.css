@@ -626,4 +626,101 @@ footer {
         0 0 20px rgba(100, 181, 246, 0.8),
         0 0 35px rgba(33, 150, 243, 0.7),
         0 0 40px rgba(33, 150, 243, 0.6);
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media screen and (max-width: 768px) {
+    /* Настраиваем общий контейнер для параллакс-секции */
+    .parallax-media {
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+    /* Настраиваем контейнеры для плеера и таймера */
+    .player-container, .timer-container {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    /* Настраиваем кнопки управления - вертикальное расположение */
+    .controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    /* Делаем кнопки на всю ширину экрана */
+    #play-pause-btn, #atc-sound-btn, #keyboard-sound-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+        justify-content: center;
+    }
+    
+    /* Устанавливаем отзывчивый размер шрифта для заголовков */
+    .neon-logo {
+        font-size: 3.5rem;
+    }
+    
+    /* Настройка таймера */
+    .timer-settings {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .timer-btn {
+        margin: 5px;
+    }
+    
+    #timer-display {
+        font-size: 3.5rem;
+    }
+    
+    /* Настраиваем режимы работы */
+    .mode-switcher {
+        flex-wrap: wrap;
+    }
+    
+    .mode-btn {
+        margin: 5px;
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+    
+    /* Настраиваем карточки преимуществ */
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media screen and (max-width: 480px) {
+    .neon-logo {
+        font-size: 2.8rem;
+    }
+    
+    .header-content p {
+        font-size: 1.1rem !important;
+        padding: 0 10px;
+    }
+    
+    #timer-display {
+        font-size: 3rem;
+    }
+    
+    .mode-btn {
+        width: 100%;
+        margin: 4px 0;
+    }
+    
+    .mode-switcher {
+        flex-direction: column;
+        width: 90%;
+    }
+    
+    /* Уменьшаем размер кнопок таймера */
+    #start-timer, #stop-timer {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
 } 
