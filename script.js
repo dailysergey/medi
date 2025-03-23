@@ -42,7 +42,8 @@ function onYouTubeIframeAPIReady() {
             'start': currentMode === 'work' ? 5452 : 0 // Начало видео для режима работы
         },
         events: {
-            'onReady': onPlayerReady
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
         }
     });
 }
@@ -74,6 +75,27 @@ function onPlayerReady(event) {
     document.getElementById('mode-night').addEventListener('click', () => {
         switchMode('night');
     });
+    
+    // Добавляем обработчики для кнопок перемотки
+    document.getElementById('forward-btn').addEventListener('click', () => {
+        const currentTime = player.getCurrentTime();
+        player.seekTo(currentTime + 10, true);
+    });
+    
+    document.getElementById('backward-btn').addEventListener('click', () => {
+        const currentTime = player.getCurrentTime();
+        player.seekTo(Math.max(0, currentTime - 10), true);
+    });
+    
+    // Обработка прогресс-бара
+    const progressBar = document.getElementById('progress-bar');
+    progressBar.addEventListener('input', () => {
+        const seekToTime = player.getDuration() * (progressBar.value / 100);
+        player.seekTo(seekToTime, true);
+    });
+    
+    // Начинаем обновлять прогресс
+    updateVideoProgress();
 }
 
 // Переключение на следующее видео в плейлисте
@@ -256,4 +278,48 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Определяем глобальную функцию для YouTube API
-window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady; 
+window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
+// Добавьте обработку состояния плеера
+function onPlayerStateChange(event) {
+    // Статус 1 означает, что видео воспроизводится
+    if (event.data === 1) {
+        // Обновляем интерфейс для активного воспроизведения
+        document.getElementById('play-btn').classList.add('active');
+        document.getElementById('pause-btn').classList.remove('active');
+    } else if (event.data === 2) { // Статус 2 означает паузу
+        // Обновляем интерфейс для паузы
+        document.getElementById('play-btn').classList.remove('active');
+        document.getElementById('pause-btn').classList.add('active');
+    }
+}
+
+// Добавьте новую функцию для обновления прогресс-бара и времени
+function updateVideoProgress() {
+    const intervalId = setInterval(() => {
+        if (!player || typeof player.getCurrentTime !== 'function') return;
+        
+        const currentTime = player.getCurrentTime() || 0;
+        const duration = player.getDuration() || 0;
+        
+        if (duration > 0) {
+            // Обновляем положение прогресс-бара
+            const progressPercent = (currentTime / duration) * 100;
+            document.getElementById('progress-bar').value = progressPercent;
+            
+            // Обновляем отображение времени
+            document.getElementById('current-time').textContent = formatTime(currentTime);
+            document.getElementById('duration').textContent = formatTime(duration);
+        }
+    }, 1000);
+    
+    // Сохраняем ID интервала для возможной очистки
+    window.videoProgressInterval = intervalId;
+}
+
+// Функция форматирования времени из секунд в MM:SS
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    seconds = Math.floor(seconds % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+} 

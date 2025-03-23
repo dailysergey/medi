@@ -12,19 +12,19 @@
     --dark-green: #81C784;
     --accent-green: #4CAF50;
     
-    /* Цвета для режима "Work with me" (розовые, цвет сакуры) */
-    --light-pink: #FCE4EC;
-    --soft-pink: #F8BBD0;
-    --medium-pink: #F48FB1;
-    --dark-pink: #F06292;
-    --accent-pink: #EC407A;
+    /* Цвета для режима "Work with me" (нежно-розовые с фиолетовым оттенком) */
+    --light-pink: #F5E8F4;
+    --soft-pink: #EFD6F0;
+    --medium-pink: #E5B4E0;
+    --dark-pink: #D896D8;
+    --accent-pink: #BA68C8;
     
-    /* Цвета для ночного режима (темно-синие) */
-    --light-blue: #E8EAF6;
-    --soft-blue: #C5CAE9;
-    --medium-blue: #7986CB;
-    --dark-blue: #3F51B5;
-    --accent-blue: #303F9F;
+    /* Цвета для ночного режима (более темные и глубокие синие) */
+    --light-blue: #E1E2F7;
+    --soft-blue: #9FA8DA;
+    --medium-blue: #5C6BC0;
+    --dark-blue: #283593;
+    --accent-blue: #1A237E;
     
     /* Текущие цвета по умолчанию */
     --light-color: var(--light-green);
@@ -67,9 +67,9 @@
     --medium-color: var(--medium-blue);
     --dark-color: var(--dark-blue);
     --accent-color: var(--accent-blue);
-    --text-primary: #1A237E;
-    --text-secondary: #3949AB;
-    --heading-color: #283593;
+    --text-primary: #D6E4FF;
+    --text-secondary: #B0C4DE;
+    --heading-color: #64B5F6;
 }
 
 body {
@@ -349,11 +349,12 @@ footer {
 }
 
 .mode-work .floating-leaf {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23F48FB1"><path d="M12 22s8-4 8-12.5C20 4 16 2 12 2S4 4 4 9.5C4 18 12 22 12 22z"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23D896D8"><path d="M12 22s8-4 8-12.5C20 4 16 2 12 2S4 4 4 9.5C4 18 12 22 12 22z"/></svg>');
 }
 
 .mode-night .floating-leaf {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%237986CB"><path d="M12 10.8l3 1.8-3 1.8-3-1.8 3-1.8M12 6l-7.5 4.5 7.5 4.5 7.5-4.5L12 6z"/></svg>');
+    opacity: 0.7;
 }
 
 @keyframes float {
@@ -446,4 +447,67 @@ footer {
     .mode-btn {
         width: 80%;
     }
+}
+
+.mode-night .parallax-wrapper {
+    background: linear-gradient(135deg, #121858 0%, #283593 100%);
+}
+
+.mode-night .parallax-overlay {
+    background: radial-gradient(circle, rgba(26, 35, 126, 0.4) 0%, rgba(13, 17, 63, 0.7) 100%);
+}
+
+.mode-night .content {
+    background: rgba(40, 53, 147, 0.95);
+}
+
+.mode-night .container {
+    background-color: rgba(28, 37, 102, 0.9);
+}
+
+/* Добавляем тени для текста в ночном режиме для улучшения читаемости */
+.mode-night h1,
+.mode-night h2,
+.mode-night h3 {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.mode-night p,
+.mode-night .subtitle,
+.mode-night #quote,
+.mode-night .mode-btn,
+.mode-night #timer-display {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Увеличиваем контраст между фоном и контентом */
+.mode-night .container,
+.mode-night .parallax-player, 
+.mode-night .parallax-timer,
+.mode-night .benefit-card,
+.mode-night .quote-container {
+    background-color: rgba(30, 45, 110, 0.95);
+    border: 1px solid rgba(100, 181, 246, 0.3);
+}
+
+/* Более светлый фон для элементов таймера */
+.mode-night .timer-btn {
+    background-color: rgba(100, 181, 246, 0.3);
+    color: #E1F5FE;
+}
+
+.mode-night .timer-btn:hover {
+    background-color: rgba(100, 181, 246, 0.5);
+}
+
+/* Улучшаем видимость кнопок управления в ночном режиме */
+.mode-night #start-timer,
+.mode-night #stop-timer {
+    background-color: #5C6BC0;
+    color: #E1F5FE;
+}
+
+.mode-night #start-timer:hover,
+.mode-night #stop-timer:hover {
+    background-color: #3F51B5;
 } 
