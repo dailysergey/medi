@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Медитация | Lofi</title>
+    <title>medi</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Медитация с Lofi</h1>
-            <p class="subtitle">Расслабьтесь и сконцентрируйтесь с помощью успокаивающей музыки</p>
-        </header>
-
-        <main>
-            <div class="player-container">
+    <!-- Parallax Header Section -->
+    <div class="parallax-wrapper">
+        <div class="parallax-overlay"></div>
+        <div class="header-content" style="text-align: center; color: white; position: relative; z-index: 1;">
+            <h1 style="font-size: 4rem; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">medi</h1>
+            <p style="font-size: 1.5rem; max-width: 600px; margin: 0 auto; text-shadow: 0 2px 5px rgba(0,0,0,0.3);">
+                Время для себя и своего спокойствия
+            </p>
+        </div>
+        
+        <!-- Медиа-элементы в параллакс секции -->
+        <div class="parallax-media">
+            <div class="player-container parallax-player">
                 <div id="player"></div>
                 <div class="controls">
                     <button id="play-btn">▶️ Играть</button>
@@ -25,8 +30,8 @@
                     <button id="next-btn">⏭️ Следующее</button>
                 </div>
             </div>
-
-            <div class="timer-container">
+            
+            <div class="timer-container parallax-timer">
                 <h2>Таймер медитации</h2>
                 <div class="timer-settings">
                     <button class="timer-btn" data-time="5">5 мин</button>
@@ -38,17 +43,79 @@
                 <button id="start-timer">Начать таймер</button>
                 <button id="stop-timer">Остановить</button>
             </div>
-        </main>
-
-        <div class="quote-container">
-            <p id="quote">"Дыхание — это нить, которая связывает нас с настоящим моментом."</p>
         </div>
-
-        <footer>
-            <p>© 2023 Медитация с Lofi. Создано для внутреннего спокойствия.</p>
-        </footer>
     </div>
+    
+    <div class="content">
+        <div class="container">
+            <header>
+                <h1>medi</h1>
+                <p class="subtitle">Расслабьтесь и сконцентрируйтесь с помощью успокаивающей музыки</p>
+            </header>
 
+            <div class="quote-container">
+                <p id="quote">"Дыхание — это нить, которая связывает нас с настоящим моментом."</p>
+            </div>
+
+            <div class="benefits">
+                <h2>Преимущества медитации</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🧠</div>
+                        <h3>Улучшение концентрации</h3>
+                        <p>Регулярная медитация помогает улучшить фокус и концентрацию внимания</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">😌</div>
+                        <h3>Снижение стресса</h3>
+                        <p>Медитация снижает уровень кортизола и помогает справиться с тревогой</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💤</div>
+                        <h3>Улучшение сна</h3>
+                        <p>Практика медитации помогает бороться с бессонницей и улучшает качество сна</p>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <p>© 2025 medi. Создано для внутреннего спокойствия.</p>
+            </footer>
+        </div>
+    </div>
+    
+    <!-- Добавим JavaScript для создания эффекта падающих листьев -->
+    <script>
+        // Создание падающих листьев для дополнительного эффекта
+        function createLeaves() {
+            const body = document.querySelector('body');
+            const numLeaves = 8;
+            
+            for (let i = 0; i < numLeaves; i++) {
+                const leaf = document.createElement('div');
+                leaf.classList.add('floating-leaf');
+                
+                // Случайное расположение и размер
+                leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.top = Math.random() * 100 + 'vh';
+                leaf.style.width = 20 + Math.random() * 30 + 'px';
+                leaf.style.height = 20 + Math.random() * 30 + 'px';
+                
+                // Случайная скорость анимации
+                const duration = 10 + Math.random() * 20;
+                leaf.style.animationDuration = duration + 's';
+                
+                // Случайная задержка начала анимации
+                leaf.style.animationDelay = Math.random() * 5 + 's';
+                
+                body.appendChild(leaf);
+            }
+        }
+        
+        // Запускаем создание листьев после загрузки страницы
+        document.addEventListener('DOMContentLoaded', createLeaves);
+    </script>
+    
     <script src="script.js"></script>
 </body>
 </html> 
