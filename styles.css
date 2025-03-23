@@ -510,4 +510,24 @@ footer {
 .mode-night #start-timer:hover,
 .mode-night #stop-timer:hover {
     background-color: #3F51B5;
+}
+
+/* Стили для комбинированной кнопки Play/Pause */
+#play-pause-btn {
+    transition: all 0.3s;
+}
+
+#play-pause-btn.playing {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* Изменение иконки в зависимости от состояния */
+#play-pause-btn::before {
+    content: "▶️";
+    margin-right: 5px;
+}
+
+#play-pause-btn.playing::before {
+    content: "⏸️";
 } 

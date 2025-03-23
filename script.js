@@ -51,16 +51,18 @@ function onYouTubeIframeAPIReady() {
 // Готовность плеера
 function onPlayerReady(event) {
     // Плеер готов
-    document.getElementById('play-btn').addEventListener('click', () => {
-        player.playVideo();
-    });
+    const playPauseBtn = document.getElementById('play-pause-btn');
     
-    document.getElementById('pause-btn').addEventListener('click', () => {
-        player.pauseVideo();
-    });
-    
-    document.getElementById('next-btn').addEventListener('click', () => {
-        nextVideo();
+    playPauseBtn.addEventListener('click', () => {
+        if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+            player.pauseVideo();
+            playPauseBtn.classList.remove('playing');
+            playPauseBtn.textContent = 'Играть';
+        } else {
+            player.playVideo();
+            playPauseBtn.classList.add('playing');
+            playPauseBtn.textContent = 'Пауза';
+        }
     });
     
     // Настройка кнопок режимов
@@ -280,17 +282,17 @@ document.addEventListener('DOMContentLoaded', () => {
 // Определяем глобальную функцию для YouTube API
 window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 
-// Добавьте обработку состояния плеера
+// Обновляем функцию обработки изменений состояния плеера
 function onPlayerStateChange(event) {
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    
     // Статус 1 означает, что видео воспроизводится
     if (event.data === 1) {
-        // Обновляем интерфейс для активного воспроизведения
-        document.getElementById('play-btn').classList.add('active');
-        document.getElementById('pause-btn').classList.remove('active');
-    } else if (event.data === 2) { // Статус 2 означает паузу
-        // Обновляем интерфейс для паузы
-        document.getElementById('play-btn').classList.remove('active');
-        document.getElementById('pause-btn').classList.add('active');
+        playPauseBtn.classList.add('playing');
+        playPauseBtn.textContent = 'Пауза';
+    } else if (event.data === 2 || event.data === 0) { // Статус 2 - пауза, 0 - окончание
+        playPauseBtn.classList.remove('playing');
+        playPauseBtn.textContent = 'Играть';
     }
 }
 
