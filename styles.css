@@ -535,8 +535,10 @@ footer {
     content: "⏸️";
 }
 
-/* Стили для кнопки звука ATC */
-#atc-sound-btn {
+/* Удаляем избыточные повторяющиеся стили для кнопок звука */
+/* Замещаем их объединенным селектором */
+
+#atc-sound-btn, #keyboard-sound-btn {
     background-color: var(--soft-color);
     transition: all 0.3s;
     display: flex;
@@ -545,13 +547,13 @@ footer {
     gap: 5px;
 }
 
-#atc-sound-btn.active {
+#atc-sound-btn.active, #keyboard-sound-btn.active {
     background-color: var(--accent-color);
     color: white;
 }
 
-/* Индикатор активности для ATC */
-#atc-sound-btn::after {
+/* Индикатор активности для звуковых кнопок */
+#atc-sound-btn::after, #keyboard-sound-btn::after {
     content: "";
     display: inline-block;
     width: 8px;
@@ -562,50 +564,13 @@ footer {
     margin-left: 5px;
 }
 
-#atc-sound-btn.active::after {
+#atc-sound-btn.active::after, #keyboard-sound-btn.active::after {
     background-color: #4CAF50;
     box-shadow: 0 0 5px #4CAF50;
 }
 
-/* Стиль для ночного режима */
-.mode-night #atc-sound-btn.active::after {
-    background-color: #64B5F6;
-    box-shadow: 0 0 5px #64B5F6;
-}
-
-/* Стили для кнопки звука клавиатуры */
-#keyboard-sound-btn {
-    background-color: var(--soft-color);
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
-
-#keyboard-sound-btn.active {
-    background-color: var(--accent-color);
-    color: white;
-}
-
-/* Индикатор активности для звука клавиатуры */
-#keyboard-sound-btn::after {
-    content: "";
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: transparent;
-    transition: all 0.3s;
-    margin-left: 5px;
-}
-
-#keyboard-sound-btn.active::after {
-    background-color: #4CAF50;
-    box-shadow: 0 0 5px #4CAF50;
-}
-
-/* Стиль для ночного режима */
+/* Ночной режим */
+.mode-night #atc-sound-btn.active::after, 
 .mode-night #keyboard-sound-btn.active::after {
     background-color: #64B5F6;
     box-shadow: 0 0 5px #64B5F6;

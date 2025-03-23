@@ -84,17 +84,6 @@ function onPlayerReady(event) {
         switchMode('night');
     });
     
-    // Добавляем обработчики для кнопок перемотки
-    document.getElementById('forward-btn').addEventListener('click', () => {
-        const currentTime = player.getCurrentTime();
-        player.seekTo(currentTime + 10, true);
-    });
-    
-    document.getElementById('backward-btn').addEventListener('click', () => {
-        const currentTime = player.getCurrentTime();
-        player.seekTo(Math.max(0, currentTime - 10), true);
-    });
-    
     // Обработка прогресс-бара
     const progressBar = document.getElementById('progress-bar');
     progressBar.addEventListener('input', () => {
@@ -104,17 +93,6 @@ function onPlayerReady(event) {
     
     // Начинаем обновлять прогресс
     updateVideoProgress();
-}
-
-// Переключение на следующее видео в плейлисте
-function nextVideo() {
-    const playlist = lofiPlaylists[currentMode];
-    currentVideoIndex = (currentVideoIndex + 1) % playlist.length;
-    const startTime = currentMode === 'work' ? 5452 : 0;
-    player.loadVideoById({
-        videoId: playlist[currentVideoIndex],
-        startSeconds: startTime
-    });
 }
 
 // Переключение режима
